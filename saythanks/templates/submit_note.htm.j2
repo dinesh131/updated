@@ -1,0 +1,57 @@
+{% extends "base.htm.j2" %}
+
+{% block title %}Say Thank You{% endblock %}
+
+{% block content %}
+
+
+<h4>Send a <strong class="green">Thank You</strong> note to <strong>{{ user }}</strong>!</h4>
+
+<form class="form-horizontal" action="./{{ user }}/submit" method="post">
+
+
+<fieldset>
+
+<!-- Form Name -->
+<legend>❝ THANK YOU ❞ </legend>
+
+<!-- Textarea -->
+<div class="form-group">
+  <div class="col-md-4">
+    <textarea class="form-control u-full-width note noteinput" id="body" name="body" placeholder="Dear {{ user }},                                                                                              Thank you for..." required></textarea>
+  </div>
+</div>
+
+<h6>You have written <strong><span id=counter></span></strong> thoughtful words, so far… (shoot for 42!)</h6>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="byline">Sincerely, </label>
+  <div class="col-md-4">
+  <input class='note' id="byline" class="u-full-width" name="byline" type="text" placeholder="{{ fake_name }}" class="form-control input-md">
+
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="submit"></label>
+  <div class="col-md-4">
+    <button id="submit" name="submit" class="btn button-primary" type="submit">Send Note <img id="eve-send" src="{{ url_for('static', filename='images/owly.svg') }}" alt="Eve the Owl"> </button>
+  </div>
+</div>
+<h2>🝐</h2>
+</fieldset>
+</form>
+
+{# Have body auto-grow as users type. #}
+<script>
+  $("#body").autoGrow();
+  $('#body').simplyCountable({
+  counter: '#counter',
+  countType: 'words',
+  countDirection: 'up'
+});
+</script>
+
+
+{% endblock %}
